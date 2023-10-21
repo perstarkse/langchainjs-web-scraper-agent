@@ -1,6 +1,6 @@
 # langchainjs-web-scraper-agent
 
-A CLI-based web scraping tool using Langchain, OpenAI, Puppeteer, and JSDOM. Fetch and parse news articles from Swedish websites right from your terminal.
+A CLI-based web scraping tool using Langchain, OpenAI, Puppeteer, and JSDOM. Fetch and parse information from the web. This program is written for the purpose of demonstrating a simple example of how one could use a LLM to call functions and return a response to the user with retrieval.
 
 ## Prerequisites
 
