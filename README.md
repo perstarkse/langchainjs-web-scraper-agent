@@ -12,6 +12,13 @@ A CLI-based web scraping tool using Langchain, OpenAI, Puppeteer, and JSDOM. Fet
 npm install
 ```
 
+## Before usage
+
+- Compile it 
+```bash
+npx tsc
+```
+  
 ## Usage
 
 Run the tool with a query to search for articles:
