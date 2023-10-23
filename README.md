@@ -5,6 +5,7 @@ A CLI-based web scraping tool using Langchain, OpenAI, Puppeteer, and JSDOM. Fet
 ## Prerequisites
 
 - An OpenAI API key must be available in the environment as `OPENAI_API_KEY`.
+- Chromium installed.
 
 ## Installation
 

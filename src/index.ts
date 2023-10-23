@@ -20,6 +20,7 @@ const parseArticle = (rawHTML: any) => {
 };
 
 const scrapeMainPage = async (query: string): Promise<any> => {
+  console.log('Searching na.se for ', query)
   const browser = await puppeteer.launch({ headless: "new", executablePath: 'chromium' });
   const page = await browser.newPage();
   await page.goto(`https://na.se/sok?query=${query}`, { waitUntil: 'networkidle2' });
@@ -39,7 +40,7 @@ const scrapeMainPage = async (query: string): Promise<any> => {
 };
 
 const scrapePage = async (link: string): Promise<any> => {
-  console.log('url', link)
+  console.log('Entering ', link, ' to get additional details')
   try {
     const browser = await puppeteer.launch({ headless: 'new', executablePath: 'chromium' });
     const page = await browser.newPage();
@@ -85,15 +86,21 @@ const tools = [
 async function main() {
   const chat = new ChatOpenAI({ temperature: 0 });
 
-    const query = process.argv[2] || 'default query';
+  const query = process.argv[2] || 'default query';
+  let verboseBool = false;
+
+  const verboseIndex = process.argv.indexOf('--verbose');
+  if (verboseIndex !== -1 && process.argv[verboseIndex + 1]) {
+    verboseBool = process.argv[verboseIndex + 1] === 'true';
+  }
 
   const executor = await initializeAgentExecutorWithOptions(tools, chat, {
     agentType: "openai-functions",
-    verbose: true,
+    verbose: verboseBool,
   });
 
   const result = await executor.run(`Are there any news about ${query} in örebro? Get the specific details from three articles and present it to me in english`);
-    
+
   console.log(result)
 }
 
